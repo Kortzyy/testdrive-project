@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="App\Tests\Controllers\HomeTest" file="C:\Users\admin\STUDY FILES 3RD YEAR\ADVANCE WEB DEVELOPMENT\WEEK 14\testdrive-project\tests\app\Controllers\HomeTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.029772">
+    <testcase name="testHomePage" file="C:\Users\admin\STUDY FILES 3RD YEAR\ADVANCE WEB DEVELOPMENT\WEEK 14\testdrive-project\tests\app\Controllers\HomeTest.php" line="12" class="App\Tests\Controllers\HomeTest" classname="App.Tests.Controllers.HomeTest" assertions="1" time="0.029772"/>
+  </testsuite>
+</testsuites>

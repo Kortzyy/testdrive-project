@@ -1,0 +1,3 @@
+Home (App\Tests\Controllers\Home)
+ [x] Home page
+
