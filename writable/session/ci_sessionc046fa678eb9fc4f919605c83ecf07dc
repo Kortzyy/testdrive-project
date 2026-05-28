@@ -1,0 +1,2 @@
+__ci_last_regenerate|i:1779983812;_ci_previous_url|s:46:"http://localhost:8080/index.php/test-dashboard";test_results|a:10:{s:7:"success";b:0;s:5:"tests";i:0;s:10:"assertions";i:0;s:8:"failures";i:0;s:6:"errors";i:0;s:8:"warnings";i:0;s:4:"time";s:4:"0.00";s:6:"memory";s:4:"0.00";s:7:"details";a:0:{}s:10:"raw_output";s:94:"'vendor' is not recognized as an internal or external command,
+operable program or batch file.";}last_test_run|s:19:"2026-05-28 15:57:07";

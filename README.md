@@ -1,197 +1,69 @@
-# TestDrive Project - CodeIgniter 4 Unit Testing Activity
+# CodeIgniter 4 Application Starter
 
-A hands-on unit testing activity for CodeIgniter 4 demonstrating PHPUnit test implementation for verifying homepage HTTP status.
+## What is CodeIgniter?
 
-## Activity Objective
+CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
+More information can be found at the [official site](https://codeigniter.com).
 
-Write a unit test that verifies the homepage returns HTTP 200 (OK) status code.
+This repository holds a composer-installable app starter.
+It has been built from the
+[development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-## Test Results
+More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
 
-PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+You can read the [user guide](https://codeigniter.com/user_guide/)
+corresponding to the latest version of the framework.
 
-.                                                                    1 / 1 (100%)
+## Installation & updates
 
-Time: 00:00.034, Memory: 10.00 MB
+`composer create-project codeigniter4/appstarter` then `composer update` whenever
+there is a new release of the framework.
 
-OK (1 test, 1 assertion)
+When updating, check the release notes to see if there are any changes you might need to apply
+to your `app` folder. The affected files can be copied or merged from
+`vendor/codeigniter4/framework/app`.
 
-### Test Summary
+## Setup
 
-| Metric | Result |
-|--------|--------|
-| Tests Ran | 1 |
-| Assertions | 1 |
-| Passed | Yes |
-| Failures | 0 |
-| Errors | 0 |
+Copy `env` to `.env` and tailor for your app, specifically the baseURL
+and any database settings.
 
-## Technologies Used
+## Important Change with index.php
 
-- PHP 8.5.3
-- CodeIgniter 4 - PHP Framework
-- PHPUnit 10.5.63 - Testing Framework
-- Composer - Dependency Manager
-- XAMPP - Local Development Environment
+`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
+for better security and separation of components.
 
-## Project Structure
+This means that you should configure your web server to "point" to your project's *public* folder, and
+not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
+framework are exposed.
 
-testdrive-project/
-├── app/
-│   └── Controllers/
-│       └── Home.php
-├── tests/
-│   └── app/
-│       └── Controllers/
-│           └── HomeTest.php
-├── vendor/
-├── .env
-├── phpunit.dist.xml
-└── spark
+**Please** read the user guide for a better explanation of how CI4 works!
 
-## The Test Code
+## Repository Management
 
-### Test File Location
-tests/app/Controllers/HomeTest.php
+We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+FEATURE REQUESTS.
 
-### Test Code
+This repository is a "distribution" one, built by our release preparation script.
+Problems with it can be raised on our forum, or as issues in the main repository.
 
-<?php
+## Server Requirements
 
-namespace App\Tests\Controllers;
+PHP version 8.2 or higher is required, with the following extensions installed:
 
-use CodeIgniter\Test\CIUnitTestCase;
-use CodeIgniter\Test\FeatureTestTrait;
+- [intl](http://php.net/manual/en/intl.requirements.php)
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
 
-class HomeTest extends CIUnitTestCase
-{
-    use FeatureTestTrait;
+> [!WARNING]
+> - The end of life date for PHP 7.4 was November 28, 2022.
+> - The end of life date for PHP 8.0 was November 26, 2023.
+> - The end of life date for PHP 8.1 was December 31, 2025.
+> - If you are still using below PHP 8.2, you should upgrade immediately.
+> - The end of life date for PHP 8.2 will be December 31, 2026.
 
-    public function testHomePage()
-    {
-        $result = $this->get('/');
-        $result->assertStatus(200);
-    }
-}
+Additionally, make sure that the following extensions are enabled in your PHP:
 
-### What This Test Does
-
-| Line | Purpose |
-|------|---------|
-| $this->get('/') | Simulates an HTTP GET request to the homepage |
-| assertStatus(200) | Verifies the response status code is 200 (OK) |
-
-## How to Run the Test
-
-### Prerequisites
-
-- PHP 7.4+ installed
-- Composer installed
-- XAMPP or any local server
-
-### Setup Instructions
-
-1. Clone the repository
-   git clone <your-repo-url>
-   cd testdrive-project
-
-2. Install dependencies
-   composer install
-
-3. Set up environment
-   cp env .env
-
-4. Start the development server (in one terminal)
-   php spark serve
-
-5. Run the test (in another terminal)
-   vendor/bin/phpunit tests/app/Controllers/HomeTest.php
-
-### Alternative Test Commands
-
-# Run with readable output
-vendor/bin/phpunit tests/app/Controllers/HomeTest.php --testdox
-
-# Run all tests
-vendor/bin/phpunit
-
-# Run with detailed information
-vendor/bin/phpunit --verbose
-
-## Expected Output
-
-PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
-
-.                                                                    1 / 1 (100%)
-
-Time: 00:00.034, Memory: 10.00 MB
-
-OK (1 test, 1 assertion)
-
-### Output Legend
-
-| Symbol | Meaning |
-|--------|---------|
-| . | Test passed |
-| F | Test failed |
-| E | Test error |
-| I | Incomplete test |
-
-## Learning Outcomes
-
-By completing this activity, I learned:
-
-- What unit testing is and its purpose
-- How to write test functions using PHPUnit
-- How to use assertions to verify behavior
-- How to analyze stack traces and CI4 errors
-- How to execute tests from the command line
-
-## Code Explanation
-
-### The Test Class
-
-class HomeTest extends CIUnitTestCase
-
-Extends CI4's base test case class. Inherits all testing functionality.
-
-### The Test Trait
-
-use FeatureTestTrait;
-
-Enables HTTP request simulation. Provides methods like get(), post(), put(), delete().
-
-### The Test Method
-
-public function testHomePage()
-
-Method name MUST start with 'test'. Contains the actual test assertions.
-
-### The Assertion
-
-$result = $this->get('/');
-$result->assertStatus(200);
-
-get('/') - Simulates browsing to homepage
-assertStatus(200) - Checks for HTTP 200 response
-
-## Notes
-
-The warning "No code coverage driver available" is informational only. It does NOT affect test execution or results. To remove warning, install/enable Xdebug with coverage mode.
-
-## References
-
-- PHPUnit Documentation: phpunit.de/documentation
-- CodeIgniter 4 Testing Guide: codeigniter.com/user_guide/testing/index.html
-- CodeIgniter 4 Unit Testing: codeigniter.com/user_guide/testing/overview.html
-
-## Activity Completion Status
-
-Activity: The Test Drive - COMPLETED
-
-✓ Test file created correctly
-✓ Test method implemented properly
-✓ Assertion verifies HTTP 200 status
-✓ Test runs successfully from command line
-
-Status: PASSED
+- json (enabled by default - don't turn it off)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
